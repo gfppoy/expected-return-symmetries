@@ -1,0 +1,41 @@
+"ENV_NAME": "overcooked_v2"
+"ENV_KWARGS": 
+  "layout" : "grounded_coord_simple"
+  "agent_view_size": 2
+  "negative_rewards": True
+  "sample_recipe_on_delivery": True
+  "random_agent_positions": True
+
+"LR": 2.5e-5
+"ANNEAL_LR": False
+"LR_WARMUP": 0.05
+
+"NUM_ENVS": 256
+"NUM_STEPS": 256
+"UPDATE_EPOCHS": 4
+"NUM_MINIBATCHES": 64
+
+"TOTAL_TIMESTEPS": 1.5e8
+"REW_SHAPING_HORIZON": 0
+
+"FC_DIM_SIZE": 128
+"GRU_HIDDEN_DIM": 128
+
+"CLIP_EPS": 0.2
+"ENT_COEF": 0.01
+"GAMMA": 0.99
+"GAE_LAMBDA": 0.95
+"SCALE_CLIP_EPS": False
+"VF_COEF": 0.5
+"MAX_GRAD_NORM": 0.25
+"ACTIVATION": "relu"
+"SEED": 6
+"NUM_SEEDS": 1
+
+"LOAD_CHECKPOINT": "/PATH/TO/IPPO/RNN/POLICY/FOR/PlAYER/1.pkl,/PATH/TO/IPPO/RNN/POLICY/FOR/PlAYER/2.pkl"
+"SAVE_CHECKPOINT": "/workspace/overcooked-v2_saves/ippo_symm_disc"
+
+# WandB Params
+"ENTITY": ""
+"PROJECT": "jaxmarl-overcooked"
+"WANDB_MODE" : "online"

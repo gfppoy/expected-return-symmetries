@@ -1,0 +1,29 @@
+"LR": 1e-5
+"NUM_ENVS": 6144
+"NUM_STEPS": 128
+"TOTAL_TIMESTEPS": 1.5e9
+"UPDATE_EPOCHS": 4
+"NUM_MINIBATCHES": 4
+"GAMMA": 0.99
+"GAE_LAMBDA": 0.95
+"CLIP_EPS": 0.2
+"ENT_COEF": 0.01
+"VF_COEF": 0.5
+"COMPRESS_COEFF": "none" #2.5e-9
+"IDENTITY_COEFF": "none" #3.0e-9
+"MAX_GRAD_NORM": 0.5
+"ENV_NAME": "hanabi"
+"ENV_KWARGS": {}
+"ANNEAL_LR": True
+"NUM_CHECKPOINTS": 1
+# "LOAD_CHECKPOINT": "/workspace/models/hanabi/exalted-dragon/checkpoint_1.pkl,/workspace/models/hanabi/ippo_ff_6/checkpoint_1.pkl,/workspace/models/hanabi/ippo_ff_7/checkpoint_1.pkl,"
+# "LOAD_CHECKPOINT": "/workspace/models/hanabi/ippo_ff_4/checkpoint_1.pkl,/workspace/models/hanabi/ippo_ff_9/checkpoint_1.pkl"
+# "LOAD_CHECKPOINT": "/workspace/models/hanabi/usual-moon/ippo_ff/checkpoint_1.pkl,/workspace/models/hanabi/usual-moon/ippo_ff/checkpoint_1.pkl"
+"LOAD_CHECKPOINT": "/workspace/models/hanabi/new/ippo_ff_7/checkpoint_1.pkl,/workspace/models/hanabi/new/ippo_ff_8/checkpoint_1.pkl,/workspace/models/hanabi/new/ippo_ff_9/checkpoint_1.pkl,/workspace/models/hanabi/new/ippo_ff_10/checkpoint_1.pkl"
+# "LOAD_CHECKPOINT": "/workspace/models/hanabi/new/ippo_ff_1/checkpoint_1.pkl,/workspace/models/hanabi/new/ippo_ff_2/checkpoint_1.pkl,/workspace/models/hanabi/new/ippo_ff_3/checkpoint_1.pkl,/workspace/models/hanabi/new/ippo_ff_4/checkpoint_1.pkl,/workspace/models/hanabi/new/ippo_ff_5/checkpoint_1.pkl,/workspace/models/hanabi/new/ippo_ff_6/checkpoint_1.pkl"
+"SAVE_CHECKPOINT": "/workspace/models/hanabi/ippo_symm_disc/"
+
+# WandB Params
+"WANDB_MODE": "online"
+"ENTITY": "gfppoy"
+"PROJECT": "jaxmarl-hanabi"

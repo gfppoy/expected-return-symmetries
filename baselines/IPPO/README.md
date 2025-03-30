@@ -1,17 +1,7 @@
-# IPPO Baseline
+### Expected Return Symmetry Training Scripts
 
-Pure JAX IPPO implementation, based on the PureJaxRL PPO implementation.
+The folder contains Pure Jax IPPO implementations based on [JaxMARL](https://github.com/FLAIROx/JaxMARL/tree/main).
 
-## 🔎 Implementation Details
-General features:
-* Agents are controlled by a single network architecture (either FF or RNN).
-* Parameters are shared between agents.
-
-## 🚀 Usage
-
-If you have cloned JaxMARL and are in the repository root, you can run the algorithms as scripts, e.g.
-```
-python baselines/IPPO/ippo_rnn_smax.py
-```
-Each file has a distinct config file which resides within [`config`](https://github.com/FLAIROx/JaxMARL/tree/main/baselines/IPPO/config).
-The config file contains the IPPO hyperparameters, the environment's parameters and for some config files the `wandb` details (`wandb` is disabled by default).
+`ippo_ff_hanabi.py` trains a joint policy parameterized by a FF network with self-play.
+`group_ippo_ff_hanabi_neural_symm_disc.py` trains an expected return symmetry, taking pre-trained self-play joint policies as input. The expected return symmetry can optionally be regularized to be compositional with itself.
+`group_ippo_ff_hanabi_neural_symm_disc.py` trains an expected return symmetry regularized with compositionality (with pre-trained expected return symmetries, given as input) and invertibility (via a L1 reconstruction loss).

@@ -20,27 +20,17 @@ RUN apt-get update && \
     libfreetype6-dev \
     pkg-config
 
-# Create the researcher user with specific uid, gid, and groups as root
-RUN getent group users || groupadd -g 100 users && \
-    groupadd -g 652 flair-users && \
-    groupadd -g 999 docker && \
-    useradd -d /home/researcher -u 3556 -g 100 -G flair-users,docker --create-home researcher
-
-# Add researcher to the video group for GPU access
-RUN usermod -aG video researcher
-
-# Create the workspace directory as root and set correct ownership
-RUN mkdir -p /workspace && chown -R researcher:users /workspace
-
 # Default to the workspace directory
 WORKDIR /workspace
 
-# Install jaxmarl from source and any other dependencies as root
+# Copy source code including the requirements directory
 COPY . .
-RUN pip install -e .
 
-# Switch to researcher for non-root operations
-USER researcher
+# Install dependencies from requirements file
+RUN pip install -r requirements/requirements.txt
+
+# Add the workspace directory to PYTHONPATH so that jaxmarl is discoverable
+ENV PYTHONPATH=/workspace:$PYTHONPATH
 
 # Disabling preallocation and setting environment variables
 ENV XLA_PYTHON_CLIENT_PREALLOCATE=false

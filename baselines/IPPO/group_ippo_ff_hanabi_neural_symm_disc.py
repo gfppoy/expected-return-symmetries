@@ -359,7 +359,7 @@ def make_train(config):
                 rs = [runner_state[0][i], runner_state[1][i], runner_state[2][i], runner_state[3][i,:], runner_state[4]]
 
                 _, _rng = jax.random.split(runner_state[4])
-                probability = 0.5#0.05 + 0.2 * jnp.clip(update_steps / 1000, 0, 1)
+                probability = 0.5
                 coin_flip = jax.random.uniform(_rng, ()) < probability
                 num_compositions = jax.lax.cond(coin_flip, lambda x: 2, lambda x: 1, None)
                 at_least_one_single_composition = jax.lax.cond(num_compositions == 1, lambda x: True, lambda x: x, at_least_one_single_composition)

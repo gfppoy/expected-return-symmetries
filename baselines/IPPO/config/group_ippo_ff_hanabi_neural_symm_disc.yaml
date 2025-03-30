@@ -14,7 +14,8 @@
 "ENV_KWARGS": {}
 "ANNEAL_LR": True
 "NUM_CHECKPOINTS": 1
-"LOAD_CHECKPOINT": "PATH/TO/IPPO/POLICY/1.pkl,PATH/TO/IPPO/POLICY/2.pkl"
+"LOAD_CHECKPOINT": "/workspace/models/hanabi/new/ippo_ff_1/checkpoint_1.pkl,/workspace/models/hanabi/new/ippo_ff_2/checkpoint_1.pkl,/workspace/models/hanabi/new/ippo_ff_3/checkpoint_1.pkl,/workspace/models/hanabi/new/ippo_ff_4/checkpoint_1.pkl,/workspace/models/hanabi/new/ippo_ff_5/checkpoint_1.pkl,/workspace/models/hanabi/new/ippo_ff_6/checkpoint_1.pkl"
+# "LOAD_CHECKPOINT": "PATH/TO/IPPO/POLICY/1.pkl,PATH/TO/IPPO/POLICY/2.pkl"
 "SAVE_CHECKPOINT": "/workspace/hanabi_saves/ippo_symm_disc/"
 
 # WandB Params

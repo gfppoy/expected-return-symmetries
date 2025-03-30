@@ -6,8 +6,8 @@
   "sample_recipe_on_delivery": True
   "random_agent_positions": True
 
-"LR": 2.5e-5
-"ANNEAL_LR": False
+"LR": 2.5e-4
+"ANNEAL_LR": True
 "LR_WARMUP": 0.05
 
 "NUM_ENVS": 256
@@ -15,8 +15,8 @@
 "UPDATE_EPOCHS": 4
 "NUM_MINIBATCHES": 64
 
-"TOTAL_TIMESTEPS": 1.5e8
-"REW_SHAPING_HORIZON": 0
+"TOTAL_TIMESTEPS": 3e7
+"REW_SHAPING_HORIZON": 1.5e7
 
 "FC_DIM_SIZE": 128
 "GRU_HIDDEN_DIM": 128
@@ -29,12 +29,8 @@
 "VF_COEF": 0.5
 "MAX_GRAD_NORM": 0.25
 "ACTIVATION": "relu"
-"SEED": 6
+"SEED": 495
 "NUM_SEEDS": 1
-
-"LOAD_CHECKPOINT": "/workspace/models/overcooked-v2/seed_150/ippo_rnn/checkpoint_1.pkl,/workspace/models/overcooked-v2/seed_76/ippo_rnn/checkpoint_1.pkl"
-# "LOAD_CHECKPOINT": "/PATH/TO/IPPO/RNN/POLICY/FOR/PlAYER/1.pkl,/PATH/TO/IPPO/RNN/POLICY/FOR/PlAYER/2.pkl"
-"SAVE_CHECKPOINT": "/workspace/overcooked-v2_saves/ippo_symm_disc"
 
 # WandB Params
 "ENTITY": ""

@@ -640,25 +640,6 @@ class MDPSymmetrizedIPPOAgent:
         greedy_action = jnp.argmax(action_logits, axis=-1)
         return greedy_action, hidden_state
 
-    # def act(self, obs, done, legal_moves, curr_player, rng):
-    #     actor_mean = None
-    #     obs = batchify(obs)
-    #     legal_moves = batchify(legal_moves)
-    #     for i in range(self.num_permutations):
-    #         transformed_obs = obs @ self.in_permutations[i]
-    #         am, value = self.model.apply(self.params, (transformed_obs, done, legal_moves))
-    #         if actor_mean is None:
-    #             actor_mean = am @ self.out_permutations[i]
-    #         else:
-    #             actor_mean += am @ self.out_permutations[i]
-
-    #     actor_mean /= self.num_permutations
-    #     unavail_actions = 1 - legal_moves
-    #     action_logits = actor_mean - (unavail_actions * 1e10)
-    #     pi = distrax.Categorical(logits=action_logits)
-
-    #     return pi.sample(seed=rng)
-
 
 class SymmetrizedIPPOAgent:
     def __init__(self, weight_file, player_idx, permutation_paths):
@@ -699,27 +680,6 @@ class SymmetrizedIPPOAgent:
         self.out_permutations = self.out_permutations.at[-1, :].set(jnp.eye(21))
 
         self.model = SymmetrizedActorCritic(env.action_space(env.agents[0]).n, config={})
-
-    # def act(self, obs, done, legal_moves, curr_player, rng):
-    #     actor_mean = None
-    #     obs = batchify(obs)
-    #     legal_moves = batchify(legal_moves)
-    #     for i in range(self.num_permutations):
-    #         transformed_obs = nn.relu(obs @ self.in_permutations_layer_1_kernel[i] + self.in_permutations_layer_1_bias[i])
-    #         transformed_obs = nn.relu(transformed_obs @ self.in_permutations_layer_2_kernel[i] + self.in_permutations_layer_2_bias[i])
-    #         transformed_obs = nn.relu(transformed_obs @ self.in_permutations_layer_3_kernel[i] + self.in_permutations_layer_3_bias[i])
-    #         am, value = self.model.apply(self.params, (transformed_obs, done, legal_moves))
-    #         if actor_mean is None:
-    #             actor_mean = am @ self.out_permutations[i]
-    #         else:
-    #             actor_mean += am @ self.out_permutations[i]
-
-    #     actor_mean /= self.num_permutations
-    #     unavail_actions = 1 - legal_moves
-    #     action_logits = actor_mean - (unavail_actions * 1e10)
-    #     pi = distrax.Categorical(logits=action_logits)
-
-    #     return pi.sample(seed=rng)
 
     def act(self, obs, done, legal_moves, curr_player, rng, hidden_state):
         # Batchify the inputs
@@ -905,28 +865,12 @@ def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("--player0", type=str, default="ippo")
     parser.add_argument("--player1", type=str, default="ippo")
-    parser.add_argument("--symm0", type=str, default="/workspace/models/hanabi/rare-lake/")
-    parser.add_argument("--symm1", type=str, default="/workspace/models/hanabi/rare-lake/")
-    parser.add_argument("--symmetrized0", type=str, default="/workspace/models/hanabi/new/gallant-forest/,/workspace/models/hanabi/new/valiant-moon/,/workspace/models/hanabi/new/likely-night/,/workspace/models/hanabi/new/dark-capybara/,/workspace/models/hanabi/new/usual-firefly/,/workspace/models/hanabi/new/glad-energy/,/workspace/models/hanabi/new/northern-tree/,/workspace/models/hanabi/new/classic-blaze/,/workspace/models/hanabi/new/jumping-frost/,/workspace/models/hanabi/new/visionary-plant/,/workspace/models/hanabi/new/leafy-pond/")
-    parser.add_argument("--symmetrized1", type=str, default="/workspace/models/hanabi/new/gallant-forest/,/workspace/models/hanabi/new/valiant-moon/,/workspace/models/hanabi/new/likely-night/,/workspace/models/hanabi/new/dark-capybara/,/workspace/models/hanabi/new/usual-firefly/,/workspace/models/hanabi/new/glad-energy/,/workspace/models/hanabi/new/northern-tree/,/workspace/models/hanabi/new/classic-blaze/,/workspace/models/hanabi/new/jumping-frost/,/workspace/models/hanabi/new/visionary-plant/,/workspace/models/hanabi/new/leafy-pond/")
-    # parser.add_argument("--weight0", type=str, default="/workspace/seed0_2p.safetensors")
-    # parser.add_argument("--weight1", type=str, default="/workspace/seed0_2p.safetensors")
-    # parser.add_argument("--weight0", type=str, default="/workspace/original-op-1")
-    # parser.add_argument("--weight1", type=str, default="/workspace/original-op-1")
-    # parser.add_argument("--weight0", type=str, default="/workspace/models/hanabi/new/ippo_ff_1/checkpoint_1.pkl")
-    # parser.add_argument("--weight1", type=str, default="/workspace/models/hanabi/new/ippo_ff_1/checkpoint_1.pkl")
-    # parser.add_argument("--weight0", type=str, default="/workspace/models/hanabi/new/realop_4/op_ippo_ff/checkpoint_5.pkl")
-    # parser.add_argument("--weight1", type=str, default="/workspace/models/hanabi/new/realop_4/op_ippo_ff/checkpoint_5.pkl")
-    # parser.add_argument("--weight0", type=str, default="/workspace/icml_OBL4/OFF_BELIEF1_SHUFFLE_COLOR0_LOAD1_BZA0_BELIEF_a.safetensors")
-    # parser.add_argument("--weight1", type=str, default="/workspace/icml_OBL4/OFF_BELIEF1_SHUFFLE_COLOR0_LOAD1_BZA0_BELIEF_b.safetensors")
-    # parser.add_argument("--weight1", type=str, default="/workspace/models/hanabi/stellar-grass/op_ippo_ff/checkpoint_5.pkl")
-    # parser.add_argument("--weight0", type=str, default="/workspace/models/hanabi/neural_op_1_6pre_0/op_ippo_ff/checkpoint_5.pkl")
-    # parser.add_argument("--weight0", type=str, default="/workspace/models/hanabi/neural_op_6pre_0_diff_pi_5/op_ippo_ff/checkpoint_5.pkl")
-    # parser.add_argument("--weight1", type=str, default="/workspace/models/hanabi/neural_op_6pre_0_diff_pi_5/op_ippo_ff/checkpoint_5.pkl")
-    # parser.add_argument("--weight0", type=str, default="/workspace/models/hanabi/neural_op_6pre_0_15phi_diff_pi_1/op_ippo_ff/checkpoint_9.pkl")
-    # parser.add_argument("--weight1", type=str, default="/workspace/models/hanabi/neural_op_6pre_0_15phi_diff_pi_1/op_ippo_ff/checkpoint_9.pkl")
-    parser.add_argument("--weight0", type=str, default="/workspace/models/hanabi/new/op-expert-forest/op_ippo_ff/checkpoint_10.pkl")
-    parser.add_argument("--weight1", type=str, default="/workspace/models/hanabi/new/op-expert-forest/op_ippo_ff/checkpoint_10.pkl")
+    parser.add_argument("--symm0", type=str, default="")
+    parser.add_argument("--symm1", type=str, default="")
+    parser.add_argument("--symmetrized0", type=str, default="")
+    parser.add_argument("--symmetrized1", type=str, default="")
+    parser.add_argument("--weight0", type=str, default="PATH_TO_POLICY_1.pkl")
+    parser.add_argument("--weight1", type=str, default="PATH_TO_POLICY_2.pkl")
     parser.add_argument("--seed", type=int, default=None)
     parser.add_argument("--num_rollouts", type=int, default=5000)
     parser.add_argument("--use_jit", type=bool, default=True)

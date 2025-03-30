@@ -13,6 +13,8 @@ In particular, we focus on the application of expected return symmetries in dece
 
 ### Reproducing Results
 
+Our implementations are based on [JaxMARL](https://github.com/FLAIROx/JaxMARL/tree/main).
+
 We recommend installing the dependencies in `requirements.txt` and using the provided Dockerfile.
 
 For Hanabi and Overcooked V2, we provide some sample pre-trained self-play optimal joint policies. Refer to the baselines folder for implemented scripts on learning expected return symmetries.

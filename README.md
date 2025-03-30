@@ -15,4 +15,4 @@ In particular, we focus on the application of expected return symmetries in dece
 
 We recommend installing the dependencies in `requirements.txt` and using the provided Dockerfile.
 
-For Hanabi and Overcooked V2, we provide some sample pre-trained self-play optimal joint policies.
+For Hanabi and Overcooked V2, we provide some sample pre-trained self-play optimal joint policies. Refer to the baselines folder for implemented scripts on learning expected return symmetries.

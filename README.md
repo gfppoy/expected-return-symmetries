@@ -1,6 +1,5 @@
 ## Expected Return Symmetries
-ICLR 2025
-Singapore
+ICLR 2025, Singapore
 
 [arXiv (arXiv:2502.01711)](https://arxiv.org/abs/2502.01711)
 
